@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="js/myfunctions.js"></script>
+    <title>mars</title>
+</head>
+<body>
+<div class="container-fluid p-0" style="background-image: url(images/mars.jpg)">
+    <div class="container d-flex justify-content-center">
+        <div class="p-3 m-3 mb-5 bg-light rounded-3  text-center">
+            <h1>Mars images browser</h1>
+            <p>Browser NASA Mars images and save and save your preferred ones</p>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#WhomAmIModal">
+                Whom am i
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="container-fluid p-10">
+    <div class="spinner-border text-danger  position-absolute top-50 start-50 " id="spinner" role="status">
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 ">
+            <div class=" p-3 m-3 bg-danger  bg-opacity-10 rounded-3 " >
+                <h2 class="p-3 m-3 bg-danger rounded-3 bg-opacity-25 text-center" id="errorBox">Loading nasa server...</h2>
+                <div class="d-none" id="searchBox">
+                    <h2 class="p-3 m-3 bg-danger rounded-3 bg-opacity-25 text-center">Search for images</h2>
+                    <form class="needs-validation was-validated" novalidate="" id="form">
+                        <div class="m-3">
+                            <label for="dateOrSolInput" class="form-label">Date(YYYY-MM-DD) or Sol</label>
+                            <input type="text" class="form-control " id="dateOrSolInput" required>
+                            <div class="invalid-feedback" ></div>
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="roverInput" class="form-label">Select Rover</label>
+                            <select class="form-select" id="roverInput" required>
+                                <option selected disabled value>Choose a rover</option>
+                                <option>curiosity</option>
+                                <option>opportunity</option>
+                                <option>spirit</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a rover.
+                            </div>
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="cameraInput" class="form-label">Select Camera</label>
+                            <select class="form-select" id="cameraInput" required>
+                                <option selected disabled value>Choose a camera</option>
+                                <option>fhaz</option>
+                                <option>rhaz</option>
+                                <option>mast</option>
+                                <option>chemcam</option>
+                                <option>mhali</option>
+                                <option>mardi</option>
+                                <option>navcam</option>
+                                <option>pancam</option>
+                                <option>minites</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a Camera.
+                            </div>
+                        </div>
+
+                        <div class="text-center m-3">
+                            <button class="btn btn-outline-danger" id="submit" type="button">Search</button>
+                            <button class="btn btn-outline-danger" id="reset" type="reset">Clear</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+
+            <div class="p-3 m-3 bg-danger  bg-opacity-10 rounded-3">
+                <h2 class=" p-3 m-3 bg-danger rounded-3 bg-opacity-25 text-center">Slide show</h2>
+                <div class="text-center m-3">
+                    <button class="btn btn-outline-danger" type="button" id="startSlide">Start</button>
+                    <button class="btn btn-outline-danger" type="button" id="stopSlide">stop</button>
+                </div>
+                <ol class="list-group  list-group-flush gx-5 list-group-numbered" id="pictureList">
+                </ol>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid p-10">
+    <div class="p-3 m-3 bg-danger  bg-opacity-10 rounded-3">
+        <h2 class="p-3 m-3 bg-danger  bg-opacity-25 rounded-3 text-center" id="searchResults"> </h2>
+        <div class="row" id="imagesBox">
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-10">
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" id="slide">
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<div class="modal fade" id="WhomAmIModal" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-danger ">meir benin</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <a href="mailto:meirba@edu.hac.ac.il">meirba@edu.hac.ac.il</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
