@@ -2,9 +2,6 @@
 # ex3-template
 A started template for your project
 
-<h1>meir benin</h1>
-<p>Email: meirba@edu.hac.ac.il</p>
-
 <h1>Execution</h1>
 <p>
 The submission is a WebStorm project that can be run directly from the IDE.
