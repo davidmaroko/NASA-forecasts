@@ -1,6 +1,6 @@
 /* your JS code here */
 'use strict';
-const apiKey = `Riqi2EeSNpvFN4Vn97oOzGg1ZBYG562fO16jU5LD`;
+const apiKey = `past here your NASA API key`;
 
 const generalValidationModule = (function () {
     const status = (response) => {
